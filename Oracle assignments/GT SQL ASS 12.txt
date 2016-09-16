@@ -1,0 +1,62 @@
+Assignment – 12 Using the operators ANY, ALL and SOME.  
+
+
+
+
+1) Write a query that selects all customers whose ratings are equal to or greater than ANY of Serres’. 
+
+
+SQL> select cname, rating from customers, salespeople 
+        where salespeople.snum=customers.snum
+        and rating >=any (select rating from customers where snum=(select snum from salespeople where sname='Serres'));
+
+CNAME          RATING
+---------- ----------
+Grass             300
+Cisneros          300
+Liu               200
+Giovanni          200
+
+
+ 
+2) Write a query using ANY or ALL that will find all salespeople who have no customers located in their city. 
+-->
+
+SQL> select cname,customers.city, sname,salespeople.city from salespeople,customers where salespeopl
+e.snum=customers.snum and salespeople.city != customers.city;
+
+CNAME      CITY       SNAME      CITY
+---------- ---------- ---------- ----------
+Giovanni   Rome       Axelrod    New York
+Grass      Berlin     Serres     San Jose
+Cisneros   San Jose   Rifkin     Barcelona
+Pereira    Rome       Motika     London
+
+
+ 
+3) Write a query that selects all orders for amounts greater than any for the customers in London. 
+-->
+
+select onum from orders,customers 
+where customers.cnum = orders.cnum 
+	and amt >any(select amt from orders 
+				where snum =(select snum from customers 
+			where city = 'London' group by snum)); # correct
+
+
+     ONUM
+---------
+     3011
+     3005
+     3008
+     3002
+     3009
+     3010
+     3006
+
+
+ 
+4) Write the above query using MIN or MAX. 
+-->
+select onum from orders,customers where customers.cnum = orders.cnum 
+and amt >any(select amt from orders where snum =(select min(snum) from customers)); #correct

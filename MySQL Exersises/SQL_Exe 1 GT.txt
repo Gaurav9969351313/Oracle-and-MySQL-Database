@@ -1,0 +1,119 @@
+
+create table s
+(
+`s#` integer(20),
+sname varchar(88),
+Status varchar(50),
+city varchar(50)
+);
+
+
+
+
+create table p
+(
+`p#` integer(20),
+pname varchar(88),
+Color varchar(50),
+Weight integer(80),
+city varchar(50)
+);
+
+
+
+
+create table j
+(
+`j#` integer(20),
+Jname varchar(88),
+city varchar(50)
+);
+
+
+
+show tables;
+
+
+
+insert into s values(1001,'gaurav','unmarried','unr');
+insert into s values(1002,'kajal','unmarried','us');
+
+insert into s values(1003,'rekha','married','Dadar');
+
+insert into s values(1003,'yashwant','married','Cst');
+
+
+
+select * from s;
+
+
+
+
+insert into p values(1001,'gaurav','white',60,'canada');
+insert into p values(1001,'abc','white',30,'canada');
+insert into p values(1002,'keshav','white',55,'sweden');
+insert into p values(1003,'naitik','white',60,'germany');
+
+
+
+
+insert into j values(1001,'gaurav','itly');
+
+insert into j values(1002,'kajal','london');
+
+insert into j values(1003,'chami','london');
+
+
+
+select * from s;
+
+
+
+6.Display only the S# and SNAME fields from the S table. 
+-->
+select `s#` ,Sname from s;
+
+
+
+
+
+
+
+7. Display the PNAME and COLOR from the P table for the CITY=”London”. 
+--> select pname ,color from p where city='canada';
+
+
+8. Display all the Suppliers from us.  
+--> select * from s where city='us';
+
+
+9. Display all the Suppliers from Paris or Athens.  
+--> select * from s where city='us' or city = 'unr';
+
+10. Display all the Projects in canada.  
+--> select * from p where city='canada';
+
+
+11. Display all the Partnames with the weight between 50 and 60 (inclusive of both).
+--> 
+select * from p where weight between 50 and 70;
+
+
+  
+12. Display all the Suppliers with a Status greater than or equal to 20.  
+--> typecasting required see desc s; the status column is varchar.
+
+
+13. Display all the Suppliers except the Suppliers from canada. 
+--> select * from s where city!='canada';
+
+
+
+ 
+14. Display only the Cities from where the Suppliers come from.  
+--> select distinct city from s ;
+
+
+15. Assuming that the Part Weight is in GRAMS, display the same in MILLIGRAMS and KILOGRAMS
+--> select weight, weight/1000 'IN KG', weight*1000 'IN MILIGRAM' from p ;
+

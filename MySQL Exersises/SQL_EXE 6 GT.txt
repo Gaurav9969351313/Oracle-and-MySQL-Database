@@ -1,0 +1,42 @@
+ 1. Display all the Suppliers with the same Status as the supplier, ‘Clark’.
+-->select status from s where job= 'Clark';
+  
+2. Display all the Employees in the same department as the employee ‘jack’.  
+-->select ename from emp where dept_no = (select dep_tno from emp where ename = 'jack');
+
+3. Display all the Parts which have more Weight than all the Blue parts.
+-->select `p#` from p where weight = any(select max(weight) from p where color = 'blue');
+
+  
+4. Display all the Projects going on in the same city as the project ‘TAPE’.
+-->select jname from j WHERE `j#` = (select jname from j where jname = 'tape' );
+
+  
+5. Display all the Parts with Weight less than all the Green parts. 
+-->
+select pname, weight from p
+where weight < 
+any(SELECT weight from p where color = 'blue' );
+
+ 
+6. Display the name of the Supplier who has sold the maximum Quantity (in one sale).
+-->select sname,spj.qty from s,spj where s.`s#` = spj.`s#` and  
+spj.qty = (select max(qty) from spj) group by sname; # question not understood
+  
+7. Display the name of the Employee with the minimum Salary.  
+-->select ename,min(sal) ,dept_no from emp group by dept_no;
+
+
+8. Display the name of the Supplier who has sold the maximum overall Quantity (sum of Sales).  
+-->
+SELECT SNAME  FROM SPJ,S WHERE S.`S#` = SPJ.`s#` AND S.`s#` =
+ (SELECT S2.`S#` FROM 
+ (SELECT S1.`s#`,MAX(s1.CSUM) FROM 
+	(SELECT `S#`,SUM(QTY) AS CSUM FROM SPJ group by `s#`) 
+	AS S1) AS S2);
+
+
+9. Display the name of the Department with the maximum number of Employees.
+-->select dept_no , dept.dname ,count(dept_no) from emp,dept where emp.dept_no = dept.deptno group by emp.dept_no;
+
+ 

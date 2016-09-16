@@ -1,0 +1,5 @@
+ASSIGNMENT 3
+
+1) Does ANSI recognize the data type DATE? --> NO IT IS ONLY FOR CHAR AND NUMBER.
+
+2) Which subdivision of SQL is used to insert values in tables? --> DATA MANIPULATION LANGUAGE(DML)

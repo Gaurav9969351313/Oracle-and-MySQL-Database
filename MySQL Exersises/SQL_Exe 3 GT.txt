@@ -1,0 +1,35 @@
+2)Display all the Supplier names in upper case.
+-->select upper(sname) from s;
+
+3) Display all the Supplier names in lower case.
+-->select lower(sname) from s;
+
+4) Display all the Supplier names padded to 25 characters, with spaces on the left
+-->select lpad(sname,25,' ') from s;
+
+5)Display all the Supplier names (with ‘la’ replaced by ‘ro’).    HINT: REPLACE. --> select replace (sname, 'la','ro') from s;
+
+6)Execute the above command with the translate function and note the difference in output. 
+-->>in orcle its possible in my sql we can do that by writing nested replace.
+
+7) Display the Supplier names and the lengths of the names.
+-->select sname,length(sname) from s;
+
+8. Use the soundex function to search for a supplier by the name of ‘BLOKE’
+-->select * from s where soundex(sname) = soundex('blo');
+  
+9. Display the Supplier name and the status (as Ten, Twenty, Thirty, etc.). 
+-->we also can do that in oracle by considering sttus as a no of days adding to juliian date of 1st day and then to_char typecasting.
+
+and
+
+-->select decode(`s#`, 1001,'ten',
+
+			 1002,'twenty',
+			1003,'thirty') from s; (not working);
+
+ 
+10. Display the current day (e.g. Thursday).  
+-->select dayname(sysdate()) from dual;
+
+select concat(upper(substr(sname,1,1)),lower(substr(sname,2))) from s;

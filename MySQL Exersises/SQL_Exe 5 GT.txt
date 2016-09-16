@@ -1,0 +1,49 @@
+1. Display the Supplier name and the Quantity sold. 
+-->select sname,qty sname from s,spj where s.`s#`= spj.`s#`;
+
+2. Display the Part name and Quantity sold.  
+-->select p.`P#`, qty from p,spj where p.`P#`=spj.`P#` group by qty;
+
+
+3. Display the Project name and Quantity sold.  
+-->select jname,qty from spj, j where spj.`J#` = j.`J#` order by 1;
+
+4. Display the Supplier name, Part name, Project name and Quantity sold.
+-->select s.sname , p.pname , j.jname, spj.qty from s,p,j,spj where spj.`P#` = p.`P#` and 
+j.city = s.city ; # correct
+
+  
+5. Display the Supplier name, Supplying Parts to a Project in the same City.
+-->select s.sname, j.jname from s,p,j where p.city = j.city and  p.city = s.city group by sname;  # correct 
+
+project in same city = supplier in same city
+
+  
+6. Display the Part name that is ‘Red’ is color, and the Quantity sold. 
+-->select p.`p#`,pname from p,spj where color = 'red' and p.`p#` = spj.`p#` group by pname;
+
+ 
+7. Display all the Quantity sold by Suppliers with the Status = 20.
+-->select sname , qty from s,spj where s.`s#` = spj.`s#` and s.status = 20;
+ 
+  
+8. Display all the Parts and Quantity with a Weight > 14.
+-->select p.`p#`, p.weight, spj.qty from p, spj where p.`p#` = spj.`p#` and p.weight > 14 ;
+
+  
+9. Display all the Project names and City, which has bought more than 500 Parts.
+--> select j.jname ,j.city , spj.Qty from j,spj where j.`j#` = spj.`j#` and qty > 500 group by j.jname; 
+ 
+10. Display all the Part names and Quantity sold that have a Weight less than 15.  
+-->select p.pname , spj.qty from spj,p where p.weight> 15 and spj.`p#` = p.`p#`;
+
+
+11. Display all the Employee names and the name of their Managers. 
+-->select ename, mname from mgr,emp where emp.empno = mgr.empno;
+
+
+Q1. i have to select the emp names and therir respective departments from their tables semp and sdept
+
+-->select empname,deptname from semp,sdept 
+where sdept.DEPTNO=semp.DEPTNO;
+
